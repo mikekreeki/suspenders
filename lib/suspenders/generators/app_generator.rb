@@ -29,6 +29,7 @@ module Suspenders
       invoke :setup_production_environment
       invoke :setup_staging_environment
       invoke :create_suspenders_views
+      invoke :create_application_folders
       invoke :create_common_javascripts
       invoke :configure_app
       invoke :setup_stylesheets
@@ -84,11 +85,13 @@ module Suspenders
     def setup_production_environment
       say 'Setting up the production environment'
       build :configure_smtp
+      # TODO: initialize on precompite
     end
 
     def setup_staging_environment
       say 'Setting up the staging environment'
       build :setup_staging_environment
+      # TODO: initialize on precompite
     end
 
     def create_suspenders_views
@@ -97,6 +100,14 @@ module Suspenders
       build :create_shared_flashes
       build :create_shared_javascripts
       build :create_application_layout
+    end
+
+    def create_application_folders
+      say 'Creating application folders'
+      build :create_decorators_folder
+      build :create_forms_folder
+      build :create_serializers_folder
+
     end
 
     def create_common_javascripts
@@ -112,6 +123,7 @@ module Suspenders
       build :configure_time_zone
       build :configure_time_formats
       build :configure_rack_timeout
+      build :configure_assets_precompilation
       build :disable_xml_params
       build :setup_default_rake_task
       build :configure_unicorn

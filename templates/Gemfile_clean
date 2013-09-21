@@ -1,20 +1,32 @@
 source 'https://rubygems.org'
 
+ruby '2.0.0'
+
+gem 'active_model_serializers'
 gem 'airbrake'
 gem 'bourbon'
 gem 'coffee-rails'
 gem 'delayed_job_active_record', '>= 4.0.0.beta2'
+gem 'draper'
 gem 'email_validator'
 gem 'flutie'
 gem 'high_voltage'
+gem 'i18n-tasks'
 gem 'jquery-rails'
+gem 'mail_view'
+gem 'maildown'
 gem 'neat'
 gem 'pg'
+gem 'pry-rails'
 gem 'rack-timeout'
+gem 'rails-i18n'
 gem 'rails', '>= 4.0.0'
 gem 'recipient_interceptor'
 gem 'sass-rails'
+gem 'signed_form'
 gem 'simple_form'
+gem 'slim-rails'
+gem 'turbolinks'
 gem 'uglifier'
 gem 'unicorn'
 
@@ -22,11 +34,17 @@ group :development do
   gem 'foreman'
   gem 'better_errors'
   gem 'binding_of_caller'
+
+  # If you want to debug with Pry on Pow webserver
+  # uncomment the following line
+  # gem 'pry-remote'
 end
 
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails', '>= 2.14'
+  gem 'dotenv-rails'
+  gem 'quiet_assets'
 end
 
 group :test do

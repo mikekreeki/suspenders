@@ -31,15 +31,15 @@ module Suspenders
 
     def configure_generators
       config = <<-RUBY
-  config.generators do |generate|
-    generate.helper false
-    generate.javascript_engine false
-    generate.request_specs false
-    generate.routing_specs false
-    generate.stylesheets false
-    generate.test_framework :rspec
-    generate.view_specs false
-  end
+    config.generators do |generate|
+      generate.helper false
+      generate.javascript_engine false
+      generate.request_specs false
+      generate.routing_specs false
+      generate.stylesheets false
+      generate.test_framework :rspec
+      generate.view_specs false
+    end
 
       RUBY
 
@@ -96,6 +96,18 @@ module Suspenders
         :force => true
     end
 
+    def create_decorators_folder
+      empty_directory 'app/decorators'
+    end
+
+    def create_forms_folder
+      empty_directory 'app/forms'
+    end
+
+    def create_serializers_folder
+      empty_directory 'app/serializers'
+    end
+
     def create_common_javascripts
       directory 'javascripts', 'app/assets/javascripts'
     end
@@ -138,6 +150,14 @@ module Suspenders
     def configure_time_zone
       config = <<-RUBY
     config.active_record.default_timezone = :utc
+
+      RUBY
+      inject_into_class 'config/application.rb', 'Application', config
+    end
+
+    def configure_assets_precompilation
+      config = <<-RUBY
+    config.assets.initialize_on_precompile = false
 
       RUBY
       inject_into_class 'config/application.rb', 'Application', config
